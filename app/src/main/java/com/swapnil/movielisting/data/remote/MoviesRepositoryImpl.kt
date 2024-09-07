@@ -4,8 +4,8 @@ import android.util.Log
 import com.google.gson.Gson
 import com.swapnil.movielisting.data.ApiClient
 import com.swapnil.movielisting.data.mapper.ResponseMapper
-import com.swapnil.movielisting.data.model.MovieListDto
-import com.swapnil.movielisting.data.model.toMovieList
+import com.swapnil.movielisting.data.model.listing.MovieListDto
+import com.swapnil.movielisting.data.model.listing.toMovieList
 import com.swapnil.movielisting.domain.model.MovieList
 import com.swapnil.movielisting.util.Resource
 

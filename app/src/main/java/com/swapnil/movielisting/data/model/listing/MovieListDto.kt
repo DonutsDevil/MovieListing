@@ -1,10 +1,10 @@
-package com.swapnil.movielisting.data.model
+package com.swapnil.movielisting.data.model.listing
 
 import com.swapnil.movielisting.domain.model.MovieList
 
 data class MovieListDto(
     val page: Int,
-    val results: List<MovieDto>,
+    val results: List<MovieListItemDto>,
     val total_pages: Int,
     val total_results: Int
 )

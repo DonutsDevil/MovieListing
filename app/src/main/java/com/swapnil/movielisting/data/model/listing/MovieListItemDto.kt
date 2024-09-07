@@ -1,8 +1,8 @@
-package com.swapnil.movielisting.data.model
+package com.swapnil.movielisting.data.model.listing
 
-import com.swapnil.movielisting.domain.model.Movie
+import com.swapnil.movielisting.domain.model.MovieListItem
 
-data class MovieDto(
+data class MovieListItemDto(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
@@ -20,8 +20,8 @@ data class MovieDto(
     val vote_count: Int
 )
 
-fun MovieDto.toMovie() : Movie {
-    return Movie(
+fun MovieListItemDto.toMovie() : MovieListItem {
+    return MovieListItem(
         adult = adult,
         backdrop_path = backdrop_path,
         genre_ids = genre_ids,
