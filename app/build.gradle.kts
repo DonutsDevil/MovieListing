@@ -20,6 +20,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "TMDB_AUTH_TOKEN", project.properties["TMDB_AUTH_TOKEN"].toString())
     }
 
     buildTypes {
@@ -40,6 +41,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -75,6 +77,7 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.client.logging)
     implementation(libs.ktor.client.encoding)
+    implementation(libs.ktor.client.okhttp)
 
     //hilt
     implementation(libs.hilt.android)
@@ -92,6 +95,7 @@ dependencies {
     implementation(libs.coil.core)
     implementation(libs.coil.compose)
 
+    implementation(libs.gson)
 }
 
 kapt {
