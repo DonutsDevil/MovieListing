@@ -1,4 +1,4 @@
-package com.swapnil.movielisting
+package com.swapnil.movielisting.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
