@@ -4,8 +4,11 @@ import android.util.Log
 import com.swapnil.movielisting.BuildConfig
 import com.swapnil.movielisting.data.KtorApiClient
 import com.swapnil.movielisting.data.remote.MovieListDtoMapper
+import com.swapnil.movielisting.data.remote.MoviePreviewRepositoryImpl
+import com.swapnil.movielisting.data.remote.MoviePreviewDtoMapper
 import com.swapnil.movielisting.domain.usecase.listing.MoviesRepository
 import com.swapnil.movielisting.data.remote.MoviesRepositoryImpl
+import com.swapnil.movielisting.domain.usecase.preview.MoviePreviewRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -68,7 +71,6 @@ object RepositoryProvider {
             install(ContentNegotiation) {
                 json(Json {
                     prettyPrint = true
-                    isLenient = true
                     encodeDefaults = true
                     explicitNulls = false
                     ignoreUnknownKeys = true
@@ -114,6 +116,18 @@ object RepositoryProvider {
             httpClient = KtorApiClient(
                 baseUrl = "https://api.themoviedb.org",
                 responseMapper = MovieListDtoMapper(),
+                httpClient = httpClient
+            )
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideMoviePreviewRepository(httpClient: HttpClient): MoviePreviewRepository {
+        return MoviePreviewRepositoryImpl(
+            apiClient = KtorApiClient(
+                baseUrl = "https://api.themoviedb.org",
+                responseMapper = MoviePreviewDtoMapper(),
                 httpClient = httpClient
             )
         )

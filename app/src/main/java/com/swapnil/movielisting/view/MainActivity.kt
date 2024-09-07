@@ -18,6 +18,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.swapnil.movielisting.ui.theme.MovieListingTheme
 import com.swapnil.movielisting.view.viewmodel.MovieListAction
 import com.swapnil.movielisting.view.viewmodel.MovieListViewModel
+import com.swapnil.movielisting.view.viewmodel.MoviePreviewViewModel
+import com.swapnil.movielisting.view.viewmodel.PreviewAction
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,9 +43,14 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     val moviesViewModel: MovieListViewModel = hiltViewModel()
+    val moviePreviewViewModel : MoviePreviewViewModel = hiltViewModel()
+
     val state by moviesViewModel.state.collectAsState()
+    val previewState by moviePreviewViewModel.state.collectAsState()
+
     LaunchedEffect(key1 = Unit) {
         moviesViewModel.processAction(MovieListAction.OnLaunch)
+        moviePreviewViewModel.processAction(PreviewAction.PreviewSelected(646097))
     }
     when {
         state.isLoading -> {
