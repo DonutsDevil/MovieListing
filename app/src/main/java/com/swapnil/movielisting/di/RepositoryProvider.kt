@@ -8,7 +8,9 @@ import com.swapnil.movielisting.data.remote.MoviePreviewRepositoryImpl
 import com.swapnil.movielisting.data.remote.MoviePreviewDtoMapper
 import com.swapnil.movielisting.domain.usecase.listing.MoviesRepository
 import com.swapnil.movielisting.data.remote.MoviesRepositoryImpl
+import com.swapnil.movielisting.data.remote.SearchRepositoryImpl
 import com.swapnil.movielisting.domain.usecase.preview.MoviePreviewRepository
+import com.swapnil.movielisting.domain.usecase.search.SearchRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -128,6 +130,18 @@ object RepositoryProvider {
             apiClient = KtorApiClient(
                 baseUrl = "https://api.themoviedb.org",
                 responseMapper = MoviePreviewDtoMapper(),
+                httpClient = httpClient
+            )
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideSearchRepository(httpClient: HttpClient): SearchRepository {
+        return SearchRepositoryImpl(
+            apiClient = KtorApiClient(
+                baseUrl = "https://api.themoviedb.org",
+                responseMapper = MovieListDtoMapper(),
                 httpClient = httpClient
             )
         )

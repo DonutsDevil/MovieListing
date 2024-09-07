@@ -3,6 +3,7 @@ package com.swapnil.movielisting.data
 import com.swapnil.movielisting.data.mapper.ResponseMapper
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.request.parameter
 import io.ktor.client.request.request
 import io.ktor.client.request.url
 import io.ktor.client.statement.HttpResponse
@@ -17,18 +18,36 @@ class KtorApiClient<Response>(
 ): ApiClient<Response> {
 
     override suspend fun get(endpoint: String): Result<Response> {
-        val url = Url("${baseUrl}${endpoint}")
+        val url = getUrl(endpoint)
         val response = try {
-            request(url, HttpMethod.Get)
+            request(url, emptyMap(), HttpMethod.Get)
         } catch (e: Exception) {
             Result.failure(e)
         }
         return handleResponse(response)
     }
 
-    private suspend fun request(url: Url, method: HttpMethod): Result<HttpResponse> {
+    override suspend fun get(
+        endpoint: String,
+        queryParameters: Map<String, String>
+    ): Result<Response> {
+        val url = getUrl(endpoint)
+        val response = try {
+            request(url, queryParameters, HttpMethod.Get)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        return handleResponse(response)
+    }
+
+    private fun getUrl(endpoint: String) = Url("${baseUrl}${endpoint}")
+
+    private suspend fun request(url: Url, queryParameters: Map<String, String>, method: HttpMethod): Result<HttpResponse> {
         val response = httpClient.request {
             url("$url")
+            for ((key, value) in queryParameters) {
+                parameter(key, value)
+            }
             this.method = method
         }
 

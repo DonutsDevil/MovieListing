@@ -79,7 +79,7 @@ data class PreviewState(
     companion object {
         fun getInitialState(): PreviewState {
             return PreviewState(
-                isLoading = false,
+                isLoading = true,
                 movie = null,
                 error = null
             )

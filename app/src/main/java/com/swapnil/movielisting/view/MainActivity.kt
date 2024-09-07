@@ -20,6 +20,8 @@ import com.swapnil.movielisting.view.viewmodel.MovieListAction
 import com.swapnil.movielisting.view.viewmodel.MovieListViewModel
 import com.swapnil.movielisting.view.viewmodel.MoviePreviewViewModel
 import com.swapnil.movielisting.view.viewmodel.PreviewAction
+import com.swapnil.movielisting.view.viewmodel.SearchAction
+import com.swapnil.movielisting.view.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,13 +46,15 @@ class MainActivity : ComponentActivity() {
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     val moviesViewModel: MovieListViewModel = hiltViewModel()
     val moviePreviewViewModel : MoviePreviewViewModel = hiltViewModel()
+    val searchViewModel: SearchViewModel = hiltViewModel()
 
     val state by moviesViewModel.state.collectAsState()
     val previewState by moviePreviewViewModel.state.collectAsState()
-
+    val searchState by searchViewModel.state.collectAsState()
     LaunchedEffect(key1 = Unit) {
         moviesViewModel.processAction(MovieListAction.OnLaunch)
         moviePreviewViewModel.processAction(PreviewAction.PreviewSelected(646097))
+        searchViewModel.processAction(SearchAction.OnSearch("Avengers"))
     }
     when {
         state.isLoading -> {
