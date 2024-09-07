@@ -2,7 +2,7 @@ package com.swapnil.movielisting.view.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.swapnil.movielisting.di.IoDispatcher
-import com.swapnil.movielisting.domain.model.GetMoviesUseCase
+import com.swapnil.movielisting.domain.usecase.listing.GetMoviesUseCase
 import com.swapnil.movielisting.domain.model.MovieList
 import com.swapnil.movielisting.util.fold
 import dagger.hilt.android.lifecycle.HiltViewModel

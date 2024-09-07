@@ -7,6 +7,7 @@ import com.swapnil.movielisting.data.mapper.ResponseMapper
 import com.swapnil.movielisting.data.model.listing.MovieListDto
 import com.swapnil.movielisting.data.model.listing.toMovieList
 import com.swapnil.movielisting.domain.model.MovieList
+import com.swapnil.movielisting.domain.usecase.listing.MoviesRepository
 import com.swapnil.movielisting.util.Resource
 
 class MoviesRepositoryImpl(

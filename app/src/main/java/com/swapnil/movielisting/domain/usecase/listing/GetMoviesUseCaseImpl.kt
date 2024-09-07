@@ -1,7 +1,5 @@
-package com.swapnil.movielisting.domain.usecase
+package com.swapnil.movielisting.domain.usecase.listing
 
-import com.swapnil.movielisting.data.remote.MoviesRepository
-import com.swapnil.movielisting.domain.model.GetMoviesUseCase
 import com.swapnil.movielisting.domain.model.MovieList
 import com.swapnil.movielisting.util.Resource
 import javax.inject.Inject

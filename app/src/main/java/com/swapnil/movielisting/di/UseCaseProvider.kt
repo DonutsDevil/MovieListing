@@ -1,8 +1,8 @@
 package com.swapnil.movielisting.di
 
-import com.swapnil.movielisting.data.remote.MoviesRepository
-import com.swapnil.movielisting.domain.model.GetMoviesUseCase
-import com.swapnil.movielisting.domain.usecase.GetMoviesUseCaseImpl
+import com.swapnil.movielisting.domain.usecase.listing.MoviesRepository
+import com.swapnil.movielisting.domain.usecase.listing.GetMoviesUseCase
+import com.swapnil.movielisting.domain.usecase.listing.GetMoviesUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

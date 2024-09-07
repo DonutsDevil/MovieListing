@@ -4,7 +4,7 @@ import android.util.Log
 import com.swapnil.movielisting.BuildConfig
 import com.swapnil.movielisting.data.KtorApiClient
 import com.swapnil.movielisting.data.remote.MovieListDtoMapper
-import com.swapnil.movielisting.data.remote.MoviesRepository
+import com.swapnil.movielisting.domain.usecase.listing.MoviesRepository
 import com.swapnil.movielisting.data.remote.MoviesRepositoryImpl
 import dagger.Module
 import dagger.Provides
