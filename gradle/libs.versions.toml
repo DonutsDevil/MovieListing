@@ -53,7 +53,7 @@ androidx-compose-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-
 coil-core = {module = "io.coil-kt:coil", version.ref = "coilCore"}
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 
-gson = { module = "com.google.code.gson:gson", version = "gson" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
