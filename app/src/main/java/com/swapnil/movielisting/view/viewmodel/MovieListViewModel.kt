@@ -70,7 +70,7 @@ data class MovieListState(
     companion object {
         fun getInitialState(): MovieListState {
             return MovieListState(
-                isLoading = true,
+                isLoading = false,
                 error = null,
                 movies = null
             )

@@ -2,6 +2,7 @@ package com.swapnil.movielisting.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -29,21 +30,16 @@ import com.swapnil.movielisting.view.viewmodel.SearchBar
 @Composable
 fun Listing(
     modifier: Modifier = Modifier,
-    movies: List<MovieListItem>?,
-    searchBar: @Composable () -> Unit,
+    movies: List<MovieListItem>,
 ) {
     LazyVerticalGrid(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .fillMaxHeight(),
         columns = GridCells.Fixed(2),
     ) {
-        items(count = 1, span = { GridItemSpan(2) }) {
-            searchBar()
-        }
-        movies?.let {
-            items(it.size, key = { index -> it[index].id }) { index ->
-                MovieItem(it[index].title, it[index].poster_path)
-            }
+        items(movies.size, key = { index -> movies[index].id }) { index ->
+            MovieItem(movies[index].title, movies[index].poster_path)
         }
     }
 }

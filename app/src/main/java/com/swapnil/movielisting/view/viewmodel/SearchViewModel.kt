@@ -115,7 +115,7 @@ data class SearchViewState(
     companion object {
         fun getInitialState() : SearchViewState {
             return SearchViewState(
-                isLoading = true,
+                isLoading = false,
                 searchedMovies = null,
                 query = MovieSearchQuery(""),
                 error = null,
