@@ -47,7 +47,7 @@ class MovieListViewModel @Inject constructor(
 
             resource.fold(
                 onSuccess = { movies ->
-                    setState(getValue().copy(isLoading = false, movies = movies))
+                    setState(getValue().copy(isLoading = false, movies = movies, error = null))
                 },
                 onError = { error ->
                     setState(getValue().copy(isLoading = false, error = error))
@@ -75,5 +75,9 @@ data class MovieListState(
                 movies = null
             )
         }
+    }
+
+    fun isMoviesAvailable(): Boolean {
+        return movies != null
     }
 }

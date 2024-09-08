@@ -7,7 +7,7 @@ data class MovieListItemDto(
     @SerialName("adult")
     val adult: Boolean,
     @SerialName("backdrop_path")
-    val backdrop_path: String,
+    val backdrop_path: String?,
     @SerialName("id")
     val id: Int,
     @SerialName("original_language")
@@ -33,6 +33,7 @@ data class MovieListItemDto(
 )
 
 fun MovieListItemDto.toMovie() : MovieListItem {
+    val imageBaseUrl = "https://image.tmdb.org/t/p/w500"
     return MovieListItem(
         adult = adult,
         backdrop_path = backdrop_path,
@@ -41,7 +42,7 @@ fun MovieListItemDto.toMovie() : MovieListItem {
         original_title = original_title,
         overview = overview,
         popularity = popularity,
-        poster_path = poster_path,
+        poster_path = "$imageBaseUrl$poster_path",
         release_date = release_date,
         title = title,
         video = video,

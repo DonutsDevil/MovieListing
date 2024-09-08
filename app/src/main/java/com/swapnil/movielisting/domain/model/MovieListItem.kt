@@ -2,7 +2,7 @@ package com.swapnil.movielisting.domain.model
 
 data class MovieListItem(
     val adult: Boolean,
-    val backdrop_path: String,
+    val backdrop_path: String?,
     val id: Int,
     val original_language: String,
     val original_title: String,

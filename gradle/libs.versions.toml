@@ -13,7 +13,7 @@ hiltAndroid = "2.51.1"
 hiltNavigationCompose = "1.2.0"
 kotlinxCoroutinesCore = "1.8.1"
 viewModelKTS = "2.8.5"
-coilCompose = "1.4.0"
+coilCompose = "2.4.0"
 coilCore = "2.7.0"
 gson = "2.10.1"
 

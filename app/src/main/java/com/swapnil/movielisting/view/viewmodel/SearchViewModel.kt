@@ -69,11 +69,7 @@ class SearchViewModel @Inject constructor(
                     val resource = searchUseCase.searchMovies(it)
                     resource.fold(
                         onSuccess = { movies ->
-                            if (movies.results.isNotEmpty()) {
-                                setMovieSearched(movies)
-                            } else {
-
-                            }
+                            setMovieSearched(movies)
                         },
                         onError = { error ->
                             setErrorState(error)
@@ -106,13 +102,14 @@ data class SearchViewState(
     val query: MovieSearchQuery,
     val error: String?,
 ) {
+    fun isSearchActive(): Boolean = query.movieName.isNotEmpty()
 
     fun noMoviesFound(): Boolean {
         if (searchedMovies == null) {
             // search not started
             return false
         }
-        return searchedMovies.results.isEmpty() && !isLoading
+        return isSearchActive() && searchedMovies.results.isEmpty() && !isLoading
     }
 
     companion object {
