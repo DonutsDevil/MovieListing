@@ -43,13 +43,17 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun MovieFeedNavHost(modifier: Modifier) {
         val navController = rememberNavController()
-        NavHost(modifier = modifier, navController = navController, startDestination = Router.MovieFeeds.key) {
+        NavHost(
+            modifier = modifier,
+            navController = navController,
+            startDestination = Router.MovieFeeds.key
+        ) {
             composable(Router.MovieFeeds.key) {
-                MovieFeedNavigation(navController = navController)
+                FeedNavigation(navController = navController)
             }
 
             composable(Router.MovieDetails.key) {
-                MoviePreviewNavigation(navBackStack = it, navController = navController)
+                PreviewNavigation(navBackStack = it, navController = navController)
             }
         }
     }

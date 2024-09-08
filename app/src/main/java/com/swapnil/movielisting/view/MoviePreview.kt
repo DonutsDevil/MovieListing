@@ -3,6 +3,7 @@ package com.swapnil.movielisting.view
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -36,13 +37,13 @@ import com.swapnil.movielisting.view.viewmodel.PreviewState
 
 
 @Composable
-fun MoviePreviewNavigation(
+fun PreviewNavigation(
     navBackStack: NavBackStackEntry,
     navController: NavHostController
 ) {
     val selectedMovieId = navBackStack.arguments?.getString(Router.MovieDetails.ID)
 
-    if (selectedMovieId == null) navController.navigateUp()
+    if (selectedMovieId == null) navController.popBackStack()
 
     val moviePreviewViewModel: MoviePreviewViewModel = hiltViewModel()
     LaunchedEffect(key1 = selectedMovieId) {
@@ -57,11 +58,11 @@ fun MoviePreviewNavigation(
         }
 
         moviePreviewState.error != null -> {
-            ErrorView(text = moviePreviewState.error!!)
+            ErrorView(modifier = Modifier.fillMaxSize(), text = moviePreviewState.error!!)
         }
 
         else -> {
-            MoviePreview(
+            MoviePreviewScreen(
                 modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 24.dp),
                 previewState = moviePreviewState,
                 goBack = {
@@ -73,7 +74,7 @@ fun MoviePreviewNavigation(
 }
 
 @Composable
-fun MoviePreview(modifier: Modifier = Modifier, previewState: PreviewState, goBack: () -> Unit) {
+fun MoviePreviewScreen(modifier: Modifier = Modifier, previewState: PreviewState, goBack: () -> Unit) {
     Column(modifier = modifier) {
         Image(
             modifier = Modifier

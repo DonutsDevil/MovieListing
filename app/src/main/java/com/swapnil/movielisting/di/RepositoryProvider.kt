@@ -41,11 +41,6 @@ import javax.inject.Singleton
 @Qualifier
 annotation class IoDispatcher
 
-@Qualifier
-annotation class MainDispatcher
-
-@Qualifier
-annotation class DefaultDispatcher
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryProvider {
@@ -55,13 +50,6 @@ object RepositoryProvider {
     @Provides
     fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
-    @MainDispatcher
-    @Provides
-    fun providesMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
-
-    @DefaultDispatcher
-    @Provides
-    fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
 
     @Provides
