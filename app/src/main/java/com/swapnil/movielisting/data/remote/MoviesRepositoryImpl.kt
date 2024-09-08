@@ -1,9 +1,7 @@
 package com.swapnil.movielisting.data.remote
 
 import android.util.Log
-import com.google.gson.Gson
 import com.swapnil.movielisting.data.ApiClient
-import com.swapnil.movielisting.data.mapper.ResponseMapper
 import com.swapnil.movielisting.data.model.listing.MovieListDto
 import com.swapnil.movielisting.data.model.listing.toMovieList
 import com.swapnil.movielisting.domain.model.MovieList
@@ -31,11 +29,5 @@ class MoviesRepositoryImpl(
             Log.e(TAG, "getMovies: Exception Occurred", e)
             Resource.Error("Something went wrong")
         }
-    }
-}
-
-class MovieListDtoMapper : ResponseMapper<MovieListDto>() {
-    override fun map(value: String): MovieListDto {
-        return Gson().fromJson(value, MovieListDto::class.java)
     }
 }

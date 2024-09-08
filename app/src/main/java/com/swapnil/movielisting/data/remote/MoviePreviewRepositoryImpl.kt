@@ -1,9 +1,7 @@
 package com.swapnil.movielisting.data.remote
 
 import android.util.Log
-import com.google.gson.Gson
 import com.swapnil.movielisting.data.ApiClient
-import com.swapnil.movielisting.data.mapper.ResponseMapper
 import com.swapnil.movielisting.data.model.preview.MoviePreviewDto
 import com.swapnil.movielisting.data.model.preview.toMoviePreview
 import com.swapnil.movielisting.domain.model.preview.MoviePreview
@@ -32,11 +30,5 @@ class MoviePreviewRepositoryImpl @Inject constructor(
             Log.e(TAG, "getPreview: error fetching preview", e)
             Resource.Error("Something went wrong")
         }
-    }
-}
-
-class MoviePreviewDtoMapper: ResponseMapper<MoviePreviewDto>() {
-    override fun map(value: String): MoviePreviewDto {
-        return Gson().fromJson(value, MoviePreviewDto::class.java)
     }
 }
