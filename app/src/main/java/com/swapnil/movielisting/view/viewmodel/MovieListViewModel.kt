@@ -41,6 +41,9 @@ class MovieListViewModel @Inject constructor(
     }
 
     private fun getMovies() {
+        if (moviesAreFetched()) {
+            return
+        }
         setLoadingState()
         viewModelScope.launch(dispatcher) {
             val resource = movieListUseCase.getMovies()
@@ -55,6 +58,8 @@ class MovieListViewModel @Inject constructor(
             )
         }
     }
+
+    private fun moviesAreFetched() = getValue().isMoviesAvailable()
 
     private fun setError(error: String) {
         setState(getValue().copy(isLoading = false, error = error))
