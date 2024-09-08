@@ -1,5 +1,6 @@
 package com.swapnil.movielisting.data.model.preview
 
+import com.swapnil.movielisting.data.RemoteRoutes
 import com.swapnil.movielisting.domain.model.preview.MoviePreview
 import kotlinx.serialization.SerialName
 
@@ -52,7 +53,7 @@ fun MoviePreviewDto.toMoviePreview() : MoviePreview {
         originalTitle = original_title,
         overview = overview,
         popularity = popularity,
-        posterPath = poster_path,
+        posterPath = "${RemoteRoutes.IMAGE_BASE_URL}$poster_path",
         releaseDate = release_date,
         revenue = revenue,
         runtime = runtime,

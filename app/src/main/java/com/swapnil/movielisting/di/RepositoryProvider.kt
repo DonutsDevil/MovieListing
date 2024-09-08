@@ -3,6 +3,7 @@ package com.swapnil.movielisting.di
 import android.util.Log
 import com.swapnil.movielisting.BuildConfig
 import com.swapnil.movielisting.data.KtorApiClient
+import com.swapnil.movielisting.data.RemoteRoutes
 import com.swapnil.movielisting.data.remote.MovieListDtoMapper
 import com.swapnil.movielisting.data.remote.MoviePreviewRepositoryImpl
 import com.swapnil.movielisting.data.remote.MoviePreviewDtoMapper
@@ -116,7 +117,7 @@ object RepositoryProvider {
     fun provideMovieListRepository(httpClient: HttpClient): MoviesRepository {
         return MoviesRepositoryImpl(
             httpClient = KtorApiClient(
-                baseUrl = "https://api.themoviedb.org",
+                baseUrl = RemoteRoutes.TMDB_BASE_URL,
                 responseMapper = MovieListDtoMapper(),
                 httpClient = httpClient
             )
@@ -128,7 +129,7 @@ object RepositoryProvider {
     fun provideMoviePreviewRepository(httpClient: HttpClient): MoviePreviewRepository {
         return MoviePreviewRepositoryImpl(
             apiClient = KtorApiClient(
-                baseUrl = "https://api.themoviedb.org",
+                baseUrl = RemoteRoutes.TMDB_BASE_URL,
                 responseMapper = MoviePreviewDtoMapper(),
                 httpClient = httpClient
             )
@@ -140,7 +141,7 @@ object RepositoryProvider {
     fun provideSearchRepository(httpClient: HttpClient): SearchRepository {
         return SearchRepositoryImpl(
             apiClient = KtorApiClient(
-                baseUrl = "https://api.themoviedb.org",
+                baseUrl = RemoteRoutes.TMDB_BASE_URL,
                 responseMapper = MovieListDtoMapper(),
                 httpClient = httpClient
             )

@@ -53,7 +53,7 @@ class MoviePreviewViewModel @Inject constructor(
     }
 
     private fun setLoadingState() {
-        setState(getValue().copy(isLoading = true))
+        setState(getValue().copy(isLoading = true, error = null))
     }
 
     private fun setErrorState(error: String) {
@@ -61,7 +61,7 @@ class MoviePreviewViewModel @Inject constructor(
     }
 
     private fun setMovieLoadedState(movie: MoviePreview) {
-        setState(getValue().copy(isLoading = false, movie = movie))
+        setState(getValue().copy(isLoading = false, movie = movie, error = null))
     }
 
 }

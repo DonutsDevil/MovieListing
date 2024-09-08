@@ -1,5 +1,6 @@
 package com.swapnil.movielisting.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -9,7 +10,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -25,12 +25,12 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.swapnil.movielisting.domain.model.MovieListItem
 import com.swapnil.movielisting.extensions.Spacer
-import com.swapnil.movielisting.view.viewmodel.SearchBar
 
 @Composable
 fun Listing(
     modifier: Modifier = Modifier,
     movies: List<MovieListItem>,
+    onMovieTapped: (Int) -> Unit
 ) {
     LazyVerticalGrid(
         modifier = modifier
@@ -38,17 +38,27 @@ fun Listing(
             .fillMaxHeight(),
         columns = GridCells.Fixed(2),
     ) {
-        items(movies.size, key = { index -> movies[index].id }) { index ->
-            MovieItem(movies[index].title, movies[index].poster_path)
+        items(
+            count = movies.size,
+            key = { index -> movies[index].id }
+        ) { index ->
+            MovieItem(
+                movies[index].title,
+                movies[index].poster_path,
+                onClick = {
+                    onMovieTapped(movies[index].id)
+                }
+            )
         }
     }
 }
 
 @Composable
-fun MovieItem(title: String, imageUrl: String) {
+fun MovieItem(title: String, imageUrl: String, onClick: () -> Unit) {
     Column(modifier = Modifier
         .fillMaxWidth()
-        .height(220.dp),
+        .height(220.dp)
+        .clickable { onClick() },
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

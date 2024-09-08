@@ -1,5 +1,6 @@
 package com.swapnil.movielisting.data.model.listing
 
+import com.swapnil.movielisting.data.RemoteRoutes
 import com.swapnil.movielisting.domain.model.MovieListItem
 import kotlinx.serialization.SerialName
 
@@ -33,7 +34,6 @@ data class MovieListItemDto(
 )
 
 fun MovieListItemDto.toMovie() : MovieListItem {
-    val imageBaseUrl = "https://image.tmdb.org/t/p/w500"
     return MovieListItem(
         adult = adult,
         backdrop_path = backdrop_path,
@@ -42,7 +42,7 @@ fun MovieListItemDto.toMovie() : MovieListItem {
         original_title = original_title,
         overview = overview,
         popularity = popularity,
-        poster_path = "$imageBaseUrl$poster_path",
+        poster_path = "${RemoteRoutes.IMAGE_BASE_URL}$poster_path",
         release_date = release_date,
         title = title,
         video = video,

@@ -42,7 +42,7 @@ class SearchViewModel @Inject constructor(
 
     override fun processAction(action: SearchAction) {
         when(action) {
-            is SearchAction.OnSearch -> updateSearchQuery(action.query)
+            is SearchAction.Search -> updateSearchQuery(action.query)
         }
     }
 
@@ -88,13 +88,13 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun setLoadingState() {
-        setState(getValue().copy(isLoading = true))
+        setState(getValue().copy(isLoading = true, error = null))
     }
 }
 
 
 sealed class SearchAction {
-    data class OnSearch(val query: String): SearchAction()
+    data class Search(val query: String): SearchAction()
 }
 data class SearchViewState(
     val isLoading: Boolean,

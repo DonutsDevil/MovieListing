@@ -41,19 +41,31 @@ class MovieListViewModel @Inject constructor(
     }
 
     private fun getMovies() {
-        setState(getValue().copy(isLoading = true))
+        setLoadingState()
         viewModelScope.launch(dispatcher) {
             val resource = movieListUseCase.getMovies()
 
             resource.fold(
                 onSuccess = { movies ->
-                    setState(getValue().copy(isLoading = false, movies = movies, error = null))
+                    setMoviesFeed(movies)
                 },
                 onError = { error ->
-                    setState(getValue().copy(isLoading = false, error = error))
+                    setError(error)
                 }
             )
         }
+    }
+
+    private fun setError(error: String) {
+        setState(getValue().copy(isLoading = false, error = error))
+    }
+
+    private fun setMoviesFeed(movies: MovieList) {
+        setState(getValue().copy(isLoading = false, movies = movies, error = null))
+    }
+
+    private fun setLoadingState() {
+        setState(getValue().copy(isLoading = true, error = null))
     }
 
 }
