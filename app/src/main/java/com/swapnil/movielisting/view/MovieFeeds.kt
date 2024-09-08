@@ -44,10 +44,11 @@ fun FeedNavigation(modifier: Modifier = Modifier, navController: NavController) 
 
     MovieFeed(modifier,
         searchState.query.movieName,
-        search = { searchViewModel.processAction(SearchAction.Search(it)) },
         getMovieList = getMovieList,
         showLoading = showLoading,
         showError = showError,
+        noMoviesFound = { searchState.noMoviesFound() },
+        search = { searchViewModel.processAction(SearchAction.Search(it)) },
         getErrorMessage = {
             if(searchState.isSearchActive()) {
                 searchState.error
@@ -66,10 +67,11 @@ fun FeedNavigation(modifier: Modifier = Modifier, navController: NavController) 
 private fun MovieFeed(
     modifier: Modifier = Modifier,
     searchText: String,
-    search: (String) -> Unit,
-    getMovieList: () -> List<MovieListItem>?,
     showLoading: Boolean,
     showError: Boolean,
+    noMoviesFound: () -> Boolean,
+    search: (String) -> Unit,
+    getMovieList: () -> List<MovieListItem>?,
     getErrorMessage: () -> String?,
     onMovieTapped: (Int) -> Unit
 ) {
@@ -85,6 +87,13 @@ private fun MovieFeed(
         when {
             showLoading -> {
                 LoadingAnimation()
+            }
+
+            noMoviesFound() -> {
+                ErrorView(
+                    modifier = Modifier.fillMaxSize(),
+                    text = "No Movies Found with Name $searchText"
+                )
             }
 
             showError -> {
