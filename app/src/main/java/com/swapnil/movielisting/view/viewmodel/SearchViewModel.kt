@@ -61,7 +61,7 @@ class SearchViewModel @Inject constructor(
             state.distinctUntilChanged { old, new ->
                     old.query == new.query
                 }.filter { searchState ->
-                    searchState.query.movieName.isNotEmpty()
+                    searchState.query.movieName.trim().isNotEmpty()
                 }.debounce(500L)
                 .onEach { setLoadingState() }
                 .map { it.query }
