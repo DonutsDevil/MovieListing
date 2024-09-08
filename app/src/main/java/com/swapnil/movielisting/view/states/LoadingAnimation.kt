@@ -1,4 +1,4 @@
-package com.swapnil.movielisting.view
+package com.swapnil.movielisting.view.states
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode

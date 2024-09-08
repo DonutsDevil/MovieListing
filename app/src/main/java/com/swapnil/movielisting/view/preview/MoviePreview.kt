@@ -1,4 +1,4 @@
-package com.swapnil.movielisting.view
+package com.swapnil.movielisting.view.preview
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -34,6 +34,8 @@ import coil.compose.AsyncImage
 import com.swapnil.movielisting.R
 import com.swapnil.movielisting.extensions.Spacer
 import com.swapnil.movielisting.routing.Router
+import com.swapnil.movielisting.view.states.ErrorView
+import com.swapnil.movielisting.view.states.LoadingAnimation
 import com.swapnil.movielisting.view.viewmodel.MoviePreviewViewModel
 import com.swapnil.movielisting.view.viewmodel.PreviewAction
 import com.swapnil.movielisting.view.viewmodel.PreviewState

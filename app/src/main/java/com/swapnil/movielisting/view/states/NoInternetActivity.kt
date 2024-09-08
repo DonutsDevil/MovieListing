@@ -1,4 +1,4 @@
-package com.swapnil.movielisting.view
+package com.swapnil.movielisting.view.states
 
 import android.content.Intent
 import android.os.Bundle
@@ -23,6 +23,7 @@ import com.swapnil.movielisting.extensions.Spacer
 import com.swapnil.movielisting.ui.theme.MovieListingTheme
 import com.swapnil.movielisting.util.internet.ConnectionState
 import com.swapnil.movielisting.util.internet.InternetStateChangeNotifier
+import com.swapnil.movielisting.view.MainActivity
 
 class NoInternetActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.swapnil.movielisting.view
+package com.swapnil.movielisting.view.feed
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +13,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.swapnil.movielisting.domain.model.MovieListItem
 import com.swapnil.movielisting.routing.Router
+import com.swapnil.movielisting.view.component.SearchBar
+import com.swapnil.movielisting.view.states.ErrorView
+import com.swapnil.movielisting.view.states.LoadingAnimation
 import com.swapnil.movielisting.view.viewmodel.MovieListAction
 import com.swapnil.movielisting.view.viewmodel.MovieListViewModel
 import com.swapnil.movielisting.view.viewmodel.SearchAction

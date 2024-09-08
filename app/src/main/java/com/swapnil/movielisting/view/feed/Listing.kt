@@ -1,4 +1,4 @@
-package com.swapnil.movielisting.view
+package com.swapnil.movielisting.view.feed
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

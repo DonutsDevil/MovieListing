@@ -1,4 +1,4 @@
-package com.swapnil.movielisting.view
+package com.swapnil.movielisting.view.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

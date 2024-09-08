@@ -17,7 +17,7 @@
         android:theme="@style/Theme.MovieListing"
         tools:targetApi="31">
         <activity
-            android:name=".view.NoInternetActivity"
+            android:name=".view.states.NoInternetActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MovieListing"
             android:exported="false" />

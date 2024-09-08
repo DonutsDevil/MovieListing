@@ -19,6 +19,9 @@ import com.swapnil.movielisting.routing.Router
 import com.swapnil.movielisting.ui.theme.MovieListingTheme
 import com.swapnil.movielisting.util.internet.ConnectionState
 import com.swapnil.movielisting.util.internet.InternetStateChangeNotifier
+import com.swapnil.movielisting.view.feed.FeedNavigation
+import com.swapnil.movielisting.view.preview.PreviewNavigation
+import com.swapnil.movielisting.view.states.NoInternetActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
