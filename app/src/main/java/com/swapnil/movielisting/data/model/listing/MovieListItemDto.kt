@@ -7,8 +7,6 @@ import kotlinx.serialization.SerialName
 data class MovieListItemDto(
     @SerialName("adult")
     val adult: Boolean,
-    @SerialName("backdrop_path")
-    val backdrop_path: String?,
     @SerialName("id")
     val id: Int,
     @SerialName("original_language")
@@ -36,7 +34,6 @@ data class MovieListItemDto(
 fun MovieListItemDto.toMovie() : MovieListItem {
     return MovieListItem(
         adult = adult,
-        backdrop_path = backdrop_path,
         id = id,
         original_language = original_language,
         original_title = original_title,

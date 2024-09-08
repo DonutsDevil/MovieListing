@@ -59,7 +59,7 @@ class MovieListViewModel @Inject constructor(
         }
     }
 
-    private fun moviesAreFetched() = getValue().isMoviesAvailable()
+    private fun moviesAreFetched() = getValue().areMoviesAvailable()
 
     private fun setError(error: String) {
         setState(getValue().copy(isLoading = false, error = error))
@@ -94,7 +94,7 @@ data class MovieListState(
         }
     }
 
-    fun isMoviesAvailable(): Boolean {
+    fun areMoviesAvailable(): Boolean {
         return movies != null
     }
 }

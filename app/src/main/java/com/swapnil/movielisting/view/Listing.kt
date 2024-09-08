@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -29,7 +28,7 @@ import com.swapnil.movielisting.domain.model.MovieListItem
 import com.swapnil.movielisting.extensions.Spacer
 
 @Composable
-fun Listing(
+fun MovieListingScreen(
     modifier: Modifier = Modifier,
     movies: List<MovieListItem>,
     onMovieTapped: (Int) -> Unit

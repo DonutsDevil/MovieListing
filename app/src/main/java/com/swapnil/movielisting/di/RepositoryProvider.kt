@@ -4,9 +4,9 @@ import android.util.Log
 import com.swapnil.movielisting.BuildConfig
 import com.swapnil.movielisting.data.KtorApiClient
 import com.swapnil.movielisting.data.RemoteRoutes
-import com.swapnil.movielisting.data.remote.MovieListDtoMapper
+import com.swapnil.movielisting.data.mapper.MovieListDtoMapper
+import com.swapnil.movielisting.data.mapper.MoviePreviewDtoMapper
 import com.swapnil.movielisting.data.remote.MoviePreviewRepositoryImpl
-import com.swapnil.movielisting.data.remote.MoviePreviewDtoMapper
 import com.swapnil.movielisting.domain.usecase.listing.MoviesRepository
 import com.swapnil.movielisting.data.remote.MoviesRepositoryImpl
 import com.swapnil.movielisting.data.remote.SearchRepositoryImpl
@@ -41,11 +41,6 @@ import javax.inject.Singleton
 @Qualifier
 annotation class IoDispatcher
 
-@Qualifier
-annotation class MainDispatcher
-
-@Qualifier
-annotation class DefaultDispatcher
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryProvider {
@@ -55,13 +50,6 @@ object RepositoryProvider {
     @Provides
     fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
-    @MainDispatcher
-    @Provides
-    fun providesMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
-
-    @DefaultDispatcher
-    @Provides
-    fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
 
     @Provides

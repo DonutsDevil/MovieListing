@@ -7,8 +7,6 @@ import kotlinx.serialization.SerialName
 data class MoviePreviewDto(
     @SerialName("adult")
     val adult: Boolean,
-    @SerialName("backdrop_path")
-    val backdrop_path: String,
     @SerialName("id")
     val id: Int,
     @SerialName("imdb_id")
@@ -46,7 +44,6 @@ data class MoviePreviewDto(
 fun MoviePreviewDto.toMoviePreview() : MoviePreview {
     return MoviePreview(
         adult = adult,
-        backdropPath = backdrop_path,
         id = id,
         imdbId = imdb_id,
         originalLanguage = original_language,

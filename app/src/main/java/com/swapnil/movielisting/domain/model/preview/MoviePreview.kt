@@ -2,7 +2,6 @@ package com.swapnil.movielisting.domain.model.preview
 
 data class MoviePreview(
     val adult: Boolean,
-    val backdropPath: String,
     val id: Int,
     val imdbId: String,
     val originalLanguage: String,

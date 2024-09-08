@@ -20,7 +20,7 @@ import com.swapnil.movielisting.view.viewmodel.SearchViewModel
 
 
 @Composable
-fun MovieFeedNavigation(modifier: Modifier = Modifier, navController: NavController) {
+fun FeedNavigation(modifier: Modifier = Modifier, navController: NavController) {
     val moviesViewModel: MovieListViewModel = hiltViewModel()
     val moviesFeedState by moviesViewModel.state.collectAsState()
 
@@ -34,17 +34,20 @@ fun MovieFeedNavigation(modifier: Modifier = Modifier, navController: NavControl
     val getMovieList: () -> List<MovieListItem>? = {
         when {
             searchState.isSearchActive() -> searchState.searchedMovies?.results
-            moviesFeedState.isMoviesAvailable() -> moviesFeedState.movies?.results
+            moviesFeedState.areMoviesAvailable() -> moviesFeedState.movies?.results
             else -> null
         }
     }
+
+    val showLoading = searchState.isLoading || moviesFeedState.isLoading
+    val showError = searchState.error != null || moviesFeedState.error != null
 
     MovieFeed(modifier,
         searchState.query.movieName,
         search = { searchViewModel.processAction(SearchAction.Search(it)) },
         getMovieList = getMovieList,
-        isLoading = { searchState.isLoading || moviesFeedState.isLoading },
-        hasError = { searchState.error != null || moviesFeedState.error != null },
+        showLoading = showLoading,
+        showError = showError,
         getErrorMessage = {
             if(searchState.isSearchActive()) {
                 searchState.error
@@ -52,8 +55,8 @@ fun MovieFeedNavigation(modifier: Modifier = Modifier, navController: NavControl
                 moviesFeedState.error
             }
         },
-        onMovieTapped = {
-            val route  = Router.MovieDetails(id = it).key
+        onMovieTapped = { selectedMovieId ->
+            val route  = Router.MovieDetails(id = selectedMovieId).key
             navController.navigate(route)
         }
     )
@@ -65,8 +68,8 @@ private fun MovieFeed(
     searchText: String,
     search: (String) -> Unit,
     getMovieList: () -> List<MovieListItem>?,
-    isLoading: () -> Boolean,
-    hasError: () -> Boolean,
+    showLoading: Boolean,
+    showError: Boolean,
     getErrorMessage: () -> String?,
     onMovieTapped: (Int) -> Unit
 ) {
@@ -80,11 +83,11 @@ private fun MovieFeed(
         )
 
         when {
-            isLoading() -> {
+            showLoading -> {
                 LoadingAnimation()
             }
 
-            hasError() -> {
+            showError -> {
                 ErrorView(
                     modifier = Modifier.fillMaxSize(),
                     text = getErrorMessage()!!
@@ -92,7 +95,7 @@ private fun MovieFeed(
             }
 
             movieList != null -> {
-                Listing(
+                MovieListingScreen(
                     modifier = Modifier
                         .fillMaxSize(),
                     movies = movieList,
